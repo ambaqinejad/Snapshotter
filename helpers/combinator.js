@@ -3,6 +3,7 @@ const fs = require("fs");
 
 const downloadController = require(path.join("..", "controllers", "downloadController.js"));
 const FTPClient = require(path.join("..", "controllers", "ftpController.js"));
+const gpf = require(path.join("..", "helpers", "generalPurposeFunctions.js"))
 const { error, success } = require(path.join("..", "constants", "responses.js"));
 // const removeFileController = require(path.join("..", "controllers", "removeFileController.js"));
 
@@ -24,6 +25,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
         }
         statusNumber = 3;
         const mediaUrl = `${process.env.ftpDomain}/${req.body.socialNetwork}/${req.body.mediaType}/${req.body.path}/${localFilePath}`
+        
         res.status(success.code.successCode).json({
             mediaUrl,
             message: "success"
