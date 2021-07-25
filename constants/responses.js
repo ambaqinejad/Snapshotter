@@ -11,6 +11,7 @@ const error = {
         downloadFailed: "خطا در عملیات بارگیری.",
         invalidExtension: "پیوند ارسال شده دارای شامل فرمت های پیشفرض نمی باشد.",
         ftpUploadFailed: "بارگزاری در هاست دانلودی با خطا مواجه شد.",
+        convertImageToBase64Failed: "خطا در تبدیل عکس به رمز"
 
     },
     code: {
@@ -22,7 +23,8 @@ const error = {
 const success = {
     message: {
         downloadedSuccessfully: "عملیات دانلود با موفقیت انجام شد.",
-        ftpUploadedSuccessfully: "بارگزاری فایل در هاست دانلودی با موفقیت انجام شد."
+        ftpUploadedSuccessfully: "بارگزاری فایل در هاست دانلودی با موفقیت انجام شد.",
+        convertedImageToBase64Successfully: "موفقیت در تبدیل عکس به رمز"
     },
     code: {
         successCode: 200
