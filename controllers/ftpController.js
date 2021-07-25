@@ -16,7 +16,7 @@ module.exports = class FTPClient {
         }
     }
 
-    async upload(res, sourcePath, destinationDirectoryPath, destinationPath) {
+    async upload(sourcePath, destinationDirectoryPath, destinationPath) {
         try {
             console.log("FTP");
             await this.client.access(this.settings);
@@ -30,12 +30,14 @@ module.exports = class FTPClient {
             await this.client.uploadFrom(sourcePath, destinationPath);
             console.log(success.message.ftpUploadedSuccessfully);
         } catch (err) {
-            res.status(error.code.serverErrorCode).json({
-                message: err.message.ftpUploadedFailed,
-                err: err.message
-            })
-            throw new Error(error.message.ftpUploadedFailed);
+            console.log(error.message.ftpUploadedFailed);
+            throw new Error({
+                message: error.message.ftpUploadedFailed,
+                err: err.message,
+                code: error.code.serverErrorCode
+            });
+        } finally {
+            this.client.close();
         }
-        this.client.close();
     }
 }

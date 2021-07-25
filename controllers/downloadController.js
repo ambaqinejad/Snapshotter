@@ -21,11 +21,12 @@ module.exports = new class DownloadController {
                 });
             return downloadPath;
         } catch (err) {
-            res.status(error.code.serverErrorCode).json({
+            console.log(error.message.downloadFailed);
+            throw new Error({
                 message: error.message.downloadFailed,
-                err: err.message
-            })
-            throw new Error(error.message.downloadFailed);
+                err: err.message,
+                code: error.code.serverErrorCode
+            });
         }
     }
 }
