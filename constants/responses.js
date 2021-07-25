@@ -7,13 +7,29 @@ const error = {
         fileNameIsRequired: "نام فایل را جهت ذخیره سازی تعیین نمایید.",
         invalidLink: "لطفا پیوند صحیحی وارد نمایید.",
         invalidMediaType: "نوع رسانه صحیح نمی باشد. [image, video]",
-        invalidSocialNetwork: "شبکه اجتماعی وارد شده، صحیح نمی باشد. [twitter, instagram, telegram]"
+        invalidSocialNetwork: "شبکه اجتماعی وارد شده، صحیح نمی باشد. [twitter, instagram, telegram]",
+        downloadFailed: "خطا در عملیات بارگیری.",
+        invalidExtension: "پیوند ارسال شده دارای شامل فرمت های پیشفرض نمی باشد.",
+        ftpUploadFailed: "بارگزاری در هاست دانلودی با خطا مواجه شد.",
+
     },
     code: {
         dataErrorCode: 400,
+        serverErrorCode: 500
+    }
+}
+
+const success = {
+    message: {
+        downloadedSuccessfully: "عملیات دانلود با موفقیت انجام شد.",
+        ftpUploadedSuccessfully: "بارگزاری فایل در هاست دانلودی با موفقیت انجام شد."
+    },
+    code: {
+        successCode: 200
     }
 }
 
 module.exports = {
-    error
+    error,
+    success,
 }
