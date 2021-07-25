@@ -1,0 +1,30 @@
+{
+  "name": "snapshotter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ambaqinejad/Snapshptter.git"
+  },
+  "author": "Amir Hosein Baqinejad (ambaqinejad)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ambaqinejad/Snapshptter/issues"
+  },
+  "homepage": "https://github.com/ambaqinejad/Snapshptter#readme",
+  "dependencies": {
+    "basic-ftp": "^4.6.6",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  }
+}
