@@ -6,7 +6,11 @@ require("dotenv").config();
 const path = require("path");
 
 // My Modules:
-const downloadRouter = require(path.join(__dirname, "routes", "downloadRouter.js"));
+const downloadRouter = require(path.join(
+	__dirname,
+	"routes",
+	"downloadRouter.js"
+));
 
 // Server Initializing
 const PORT = process.env.PORT || 3000;
@@ -16,10 +20,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/download', downloadRouter);
+app.use("/download", downloadRouter);
 // Using Routes and Middleware
 
 // Running the Server
 app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
+	console.log(`Server is running on port: ${PORT}`);
 });
