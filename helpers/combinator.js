@@ -27,7 +27,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 			process.env.ftpPort,
 			process.env.ftpUser,
 			process.env.ftpPassword,
-			false
+			true
 		);
 		const ftpDirectoryPath = `/public_html/${req.body.socialNetwork}/${req.body.mediaType}/${req.body.path}`;
 		const ftpFilePath = `${ftpDirectoryPath}/${localFilePath}`;

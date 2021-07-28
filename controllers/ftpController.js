@@ -11,7 +11,7 @@ const { error, success } = require(path.join(
 module.exports = class FTPClient {
 	constructor(
 		host = "localhost",
-		port = 21,
+		port = 4421,
 		user = "anonymous",
 		password = "guest",
 		secure = false
@@ -20,6 +20,7 @@ module.exports = class FTPClient {
 		this.client.ftp.verbose = true;
 		this.settings = {
 			host,
+			port,
 			user,
 			password,
 			secure,
@@ -28,7 +29,12 @@ module.exports = class FTPClient {
 
 	async upload(sourcePath, destinationDirectoryPath, destinationPath) {
 		try {
-			await this.client.access(this.settings);
+			await this.client.access({
+				...this.settings,
+				// secureOptions: {
+				// 	rejectUnauthorized: false,
+				// },
+			});
 			await this.client.ensureDir(destinationDirectoryPath);
 			this.client.trackProgress((info) => {
 				console.log("File", info.name);
