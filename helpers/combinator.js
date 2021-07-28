@@ -52,7 +52,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 			fs.unlinkSync(localFilePath);
 		}
 		console.log(err);
-		res.status(err.code || 500).json({
+		res.status(error.code.serverErrorCode).json({
 			message: err.message || "خطا در فرآیند",
 			err: err.err || "خطا در فرآیند",
 		});

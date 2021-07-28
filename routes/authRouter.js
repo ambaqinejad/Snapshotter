@@ -21,7 +21,12 @@ router.post(
 	authValidator.reqConditionValidator,
 	authController.login
 );
-// router.post("/signUp", authController.signUp);
+router.post(
+	"/signUp",
+	authValidator.conditions(),
+	authValidator.reqConditionValidator,
+	authController.signUp
+);
 // router.post("/getUsers", authController.getUsers);
 
 module.exports = router;

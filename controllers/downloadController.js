@@ -24,11 +24,12 @@ module.exports = new (class DownloadController {
 			return downloadPath;
 		} catch (err) {
 			console.log(error.message.downloadFailed);
-			throw new Error({
-				message: error.message.downloadFailed,
-				err: err.message,
-				code: error.code.serverErrorCode,
-			});
+			throw new Error(err.message);
+			// throw new Error({
+			// 	message: error.message.downloadFailed,
+			// 	err: err.message,
+			// 	code: error.code.serverErrorCode,
+			// });
 		}
 	}
 })();

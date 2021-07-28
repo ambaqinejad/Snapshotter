@@ -40,11 +40,12 @@ module.exports = class FTPClient {
 			console.log(success.message.ftpUploadedSuccessfully);
 		} catch (err) {
 			console.log(error.message.ftpUploadedFailed);
-			throw new Error({
-				message: error.message.ftpUploadedFailed,
-				err: err.message,
-				code: error.code.serverErrorCode,
-			});
+			throw new Error(err.message);
+			// throw new Error({
+			// 	message: error.message.ftpUploadedFailed,
+			// 	err: err.message,
+			// 	code: error.code.serverErrorCode,
+			// });
 		} finally {
 			this.client.close();
 		}

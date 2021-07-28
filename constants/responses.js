@@ -10,8 +10,7 @@ const error = {
 		invalidSocialNetwork:
 			"شبکه اجتماعی وارد شده، صحیح نمی باشد. [twitter, instagram, telegram]",
 		downloadFailed: "خطا در عملیات بارگیری.",
-		invalidExtension:
-			"پیوند ارسال شده دارای شامل فرمت های پیشفرض نمی باشد.",
+		invalidExtension: "پیوند ارسال شده شامل فرمت های پیشفرض نمی باشد.",
 		ftpUploadFailed: "بارگزاری در هاست دانلودی با خطا مواجه شد.",
 		convertImageToBase64Failed: "خطا در تبدیل عکس به رمز",
 		usernameIsRequired: "لطفا نام کاربری را وارد نمایید.",
@@ -20,10 +19,13 @@ const error = {
 		usernameExistError: "کاربری با این نام قبلا ثبت نام نموده است.",
 		loginFailed: "خطا در عملیات ورورد",
 		signUpFailed: "خطا در عملیات ثبت نام",
+		assignTokenUpFailed: "خطا در انتصاب توکن",
+		forbiddenRequest: "ممنوع بودن درخواست",
 	},
 	code: {
 		dataErrorCode: 400,
 		notFoundErrorCode: 404,
+		forbidden: 403,
 		serverErrorCode: 500,
 	},
 };
