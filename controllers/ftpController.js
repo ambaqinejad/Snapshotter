@@ -23,7 +23,7 @@ module.exports = class FTPClient {
 			port,
 			user,
 			password,
-			secure,
+			secure: true,
 			secureOptions: {
 				rejectUnauthorized: false,
 			},
@@ -43,7 +43,7 @@ module.exports = class FTPClient {
 			await this.client.uploadFrom(sourcePath, destinationPath);
 			console.log(success.message.ftpUploadedSuccessfully);
 		} catch (err) {
-			console.log(error.message.ftpUploadedFailed);
+			console.log(error.message.ftpUploadFailed);
 			throw new Error(err.message);
 			// throw new Error({
 			// 	message: error.message.ftpUploadedFailed,

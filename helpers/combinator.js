@@ -27,7 +27,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 			process.env.ftpPort,
 			process.env.ftpUser,
 			process.env.ftpPassword,
-			true
+			false
 		);
 		const ftpDirectoryPath = `/public_html/${req.body.socialNetwork}/${req.body.mediaType}/${req.body.path}`;
 		const ftpFilePath = `${ftpDirectoryPath}/${localFilePath}`;
@@ -44,11 +44,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 			message: "success",
 		});
 	} catch (err) {
-		if (
-			localFilePath !== "" &&
-			statusNumber === 1 &&
-			fs.existsSync(localFilePath)
-		) {
+		if (statusNumber === 1 && fs.existsSync(localFilePath)) {
 			fs.unlinkSync(localFilePath);
 		}
 		console.log(err);

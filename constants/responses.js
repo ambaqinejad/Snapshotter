@@ -21,6 +21,8 @@ const error = {
 		signUpFailed: "خطا در عملیات ثبت نام",
 		assignTokenUpFailed: "خطا در انتصاب توکن",
 		forbiddenRequest: "ممنوع بودن درخواست",
+		saveFileError: "خطا در ذخیره سازی محلی فایل",
+		conversionError: "خطا در تبدیل فرمت",
 	},
 	code: {
 		dataErrorCode: 400,
@@ -38,6 +40,7 @@ const success = {
 		convertedImageToBase64Successfully: "موفقیت در تبدیل عکس به رمز",
 		loggedInSuccessfully: "عملیات ورود با موفقیت انجام شد.",
 		signedUpSuccessfully: "عملیات ثبت نام با موفقیت انجام شد.",
+		convertedSuccessfully: "عملیات تبدیل فرمت با موفقیت انجام شد.",
 	},
 	code: {
 		successCode: 200,
