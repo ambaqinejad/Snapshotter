@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const FileType = require("file-type");
 
 const fs = require("fs");
 const path = require("path");
@@ -16,8 +17,9 @@ module.exports = new (class DownloadController {
 			const mediaLink = req.body.link;
 			const response = await fetch(mediaLink);
 			const mediaBuffer = await response.buffer();
-			const downloadPath =
-				req.body.fileName + gpf.getFileExtension(req.body.link);
+			const extension = await FileType.fromBuffer(mediaBuffer);
+			const downloadPath = `${req.body.fileName}.${extension.ext}`;
+			// + gpf.getFileExtension(req.body.link);
 			await fs.writeFile(downloadPath, mediaBuffer, () => {
 				console.log(success.message.downloadedSuccessfully);
 			});

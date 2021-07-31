@@ -24,17 +24,15 @@ module.exports = class FTPClient {
 			user,
 			password,
 			secure,
+			secureOptions: {
+				rejectUnauthorized: false,
+			},
 		};
 	}
 
 	async upload(sourcePath, destinationDirectoryPath, destinationPath) {
 		try {
-			await this.client.access({
-				...this.settings,
-				// secureOptions: {
-				// 	rejectUnauthorized: false,
-				// },
-			});
+			await this.client.access(this.settings);
 			await this.client.ensureDir(destinationDirectoryPath);
 			this.client.trackProgress((info) => {
 				console.log("File", info.name);

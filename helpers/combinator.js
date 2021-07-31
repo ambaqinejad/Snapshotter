@@ -37,7 +37,7 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 			fs.unlinkSync(localFilePath);
 		}
 		statusNumber = 3;
-		const mediaUrl = `${process.env.ftpDomain}/${req.body.socialNetwork}/${req.body.mediaType}/${req.body.path}/${localFilePath}`;
+		const mediaUrl = `${process.env.ftpDomain}public_html/${req.body.socialNetwork}/${req.body.mediaType}/${req.body.path}/${localFilePath}`;
 
 		res.status(success.code.successCode).json({
 			mediaUrl,
