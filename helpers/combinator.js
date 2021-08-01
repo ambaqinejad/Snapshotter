@@ -21,6 +21,12 @@ const downloadUploadToFTPServerRemoveRespond = async (req, res, next) => {
 
 	try {
 		localFilePath = await downloadController.download(req, res, next);
+		if (req.body.mediaType === "video" && !localFilePath.includes(".mp4")) {
+			localFilePath = await downloadController.converter(
+				req,
+				localFilePath
+			);
+		}
 		statusNumber = 1;
 		const client = new FTPClient(
 			process.env.ftpHost,

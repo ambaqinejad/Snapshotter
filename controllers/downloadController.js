@@ -22,39 +22,8 @@ module.exports = new (class DownloadController {
 			const downloadPath = `${req.body.fileName}.${extension.ext}`;
 			// + gpf.getFileExtension(req.body.link);
 			fs.writeFileSync(downloadPath, mediaBuffer);
-			if (req.body.mediaType === "video" && extension.ext !== "mp4") {
-				return new Promise((resolve, reject) => {
-					const convertPath = `${req.body.fileName}.mp4`;
-					hbjs.spawn({
-						input: downloadPath,
-						output: convertPath,
-					})
-						.on("error", (err) => {
-							if (fs.existsSync(convertPath)) {
-								fs.unlinkSync(convertPath);
-							}
-							reject(error.message.conversionError);
-						})
-						.on("progress", (progress) => {
-							console.log(
-								`Percent complete: ${progress.percentComplete}, ETA: ${progress.eta}`
-							);
-						})
-						.on("complete", () => {
-							console.log(success.message.convertedSuccessfully);
-							console.log(success.message.downloadedSuccessfully);
-							if (fs.existsSync(downloadPath)) {
-								fs.unlinkSync(downloadPath);
-							}
-							resolve(convertPath);
-						});
-				});
-			} else {
-				console.log(success.message.downloadedSuccessfully);
-				return new Promise((resolve, reject) => {
-					resolve(downloadPath);
-				});
-			}
+			console.log(success.message.downloadedSuccessfully);
+			return downloadPath;
 		} catch (err) {
 			console.log(error.message.downloadFailed);
 			throw new Error(err.message);
@@ -64,5 +33,39 @@ module.exports = new (class DownloadController {
 			// 	code: error.code.serverErrorCode,
 			// });
 		}
+	}
+
+	async converter(req, downloadPath) {
+		const convertPath = `${req.body.fileName}.mp4`;
+		return new Promise((resolve, reject) => {
+			hbjs.spawn({
+				input: downloadPath,
+				output: convertPath,
+			})
+				.on("error", (err) => {
+					reject(error.message.conversionError);
+				})
+				.on("progress", (progress) => {
+					console.log(
+						`Percent complete: ${progress.percentComplete}, ETA: ${progress.eta}`
+					);
+				})
+				.on("complete", () => {
+					console.log(success.message.convertedSuccessfully);
+					console.log(success.message.downloadedSuccessfully);
+					if (fs.existsSync(downloadPath)) {
+						fs.unlinkSync(downloadPath);
+					}
+					resolve(convertPath);
+				});
+		}).catch((err) => {
+			if (fs.existsSync(convertPath)) {
+				fs.unlinkSync(convertPath);
+			}
+			if (fs.existsSync(downloadPath)) {
+				fs.unlinkSync(downloadPath);
+			}
+			throw new Error(err.message);
+		});
 	}
 })();
